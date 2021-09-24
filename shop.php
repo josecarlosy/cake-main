@@ -9,6 +9,8 @@
    $get_products_sql = "SELECT id,product_name,code,price,image FROM tblproduct";
    $products = $connect->query($get_products_sql);
 
+   echo "<table>";
+
    $_SESSION['products']=mysqli_fetch_all($products,MYSQLI_ASSOC);
 
 
@@ -296,10 +298,22 @@
                             <h6><a href="#"><?php echo $values["product_name"]; ?></a></h6>
                             <div class="product__item__price"><?php echo $values["price"]; ?></div>
                             <div class="cart_add">
+
                                <form name="cart" id="cart" action="cart.php" method="POST">
                                <input type="hidden" name="product_name" value=<?php echo $values["product_name"]; ?> />
+                               <input type="hidden" name="price" value=<?php echo $values["price"]; ?> />
+                               <input type="hidden" name="code" value=<?php echo $values["code"]; ?> />
+                               
                                 <input type="submit" value="Add to cart"> 
+
+
+                                
                                </form>
+                               >
+
+
+
+
                                 <?php echo $values["id"]; ?>
                             </div>
                         </div>
