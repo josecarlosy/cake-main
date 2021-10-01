@@ -2,10 +2,11 @@
   session_start();  
   $connect = mysqli_connect("localhost", "padminuser", "phpadminpass", "main-cake");  
   
-//  if ($conn->connect_error) {
-//     die("Connection failed: " . $conn->connect_error);
-//   } 
-  
+ if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+  } 
+
+
    $get_products_sql = "SELECT id,product_name,code,price,image FROM tblproduct";
    $products = $connect->query($get_products_sql);
 
@@ -14,20 +15,6 @@
    $_SESSION['products']=mysqli_fetch_all($products,MYSQLI_ASSOC);
 
 
-   
-
-
-
-
-   
-   
-
-//    print_r($_SESSION['products']);
-    // output data of each row
-    // while($row = $products->fetch_assoc()) {
-    //     echo "id: " . $row["id"]. " - Name: " . $row["product_name"]. "Code " . $row["code"]. "Price ". $row["price"]. "<br>";
-    //   }
-    
     
     $connect->close();
 
@@ -101,7 +88,7 @@
                         <li>ENG</li>
                     </ul>
                 </li>
-                <li><a href="#">Sign in</a> <span class="arrow_carrot-down"></span></li>
+                <li><a href="signup.php">Sign in</a> <span class="arrow_carrot-down"></span></li>
             </ul>
         </div>
     </div>
@@ -128,7 +115,7 @@
                                             <li>ENG</li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">Sign in</a> <span class="arrow_carrot-down"></span></li>
+                                    <li><a href="signup.php">Sign in</a> <span class="arrow_carrot-down"></span></li>
                                 </ul>
                             </div>
                             <div class="header__logo">
@@ -188,84 +175,67 @@
     </div>
     <!-- Breadcrumb End -->
 
-    <!-- Shop Section Begin -->
-    <section class="shop spad">
-        <div class="container">
-            <div class="shop__option">
-                <div class="row">
-                    <div class="col-lg-7 col-md-7">
-                        <div class="shop__option__search">
-                            <form action="#">
-                                <select>
-                                    <option value="">Categories</option>
-                                    <option value="">Red Velvet</option>
-                                    <option value="">Cup Cake</option>
-                                    <option value="">Biscuit</option>
-                                </select>
-                                <input type="text" placeholder="Search">
-                                <button type="submit"><i class="fa fa-search"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-lg-5 col-md-5">
-                        <div class="shop__option__right">
-                            <select>
-                                <option value="">Default sorting</option>
-                                <option value="">A to Z</option>
-                                <option value="">1 - 8</option>
-                                <option value="">Name</option>
-                            </select>
-                            <a href="#"><i class="fa fa-list"></i></a>
-                            <a href="#"><i class="fa fa-reorder"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- cart section begin-->
+  
+<div class="txt-heading">Shopping Cart</div>
 
-            <div class="categories">
-        <div class="container">
-            <div class="row">
-                <div class="categories__slider owl-carousel">
-                    <div class="categories__item">
-                        <div class="categories__item__icon">
-                            <span class="flaticon-029-cupcake-3"></span>
-                            <h5>Cupcake</h5>
-                        </div>
-                    </div>
-                    <div class="categories__item">
-                        <div class="categories__item__icon">
-                            <span class="flaticon-034-chocolate-roll"></span>
-                            <h5>Butter</h5>
-                        </div>
-                    </div>
-                    <div class="categories__item">
-                        <div class="categories__item__icon">
-                            <span class="flaticon-005-pancake"></span>
-                            <h5>Red Velvet</h5>
-                        </div>
-                    </div>
-                    <div class="categories__item">
-                        <div class="categories__item__icon">
-                            <span class="flaticon-030-cupcake-2"></span>
-                            <h5>Biscuit</h5>
-                        </div>
-                    </div>
-                    <div class="categories__item">
-                        <div class="categories__item__icon">
-                            <span class="flaticon-006-macarons"></span>
-                            <h5>Donut</h5>
-                        </div>
-                    </div>
-                    <div class="categories__item">
-                        <div class="categories__item__icon">
-                            <span class="flaticon-006-macarons"></span>
-                            <h5>Cupcake</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<a id="btnEmpty" href="index.php?action=empty">Empty Cart</a>
+<?php
+if(isset($_SESSION["cart"])){
+    $total_quantity = 0;
+    $total_price = 0;
+?>	
+<table class="tbl-cart" cellpadding="10" cellspacing="1">
+<tbody>
+<tr>
+<th style="text-align:left;">product_name</th>
+<th style="text-align:left;">Code</th>
+<th style="text-align:right;" width="5%">Quantity</th>
+<th style="text-align:right;" width="10%">code</th>
+<th style="text-align:right;" width="10%">Price</th>
+<th style="text-align:center;" width="5%">Remove</th>
+</tr>	
+<?php		
+    foreach ($_SESSION["cart"] as $item){
+        $item_price = $item["quantity"]*$item["price"];
+		?>
+				<tr>
+				<td><img src="<?php echo $item["image"]; ?>" class="cart-item-image" /><?php echo $item["product_name"]; ?></td>
+				<td><?php echo $item["code"]; ?></td>
+				<td style="text-align:right;"><?php echo $item["quantity"]; ?></td>
+				<td  style="text-align:right;"><?php echo "$ ".$item["price"]; ?></td>
+				<td  style="text-align:right;"><?php echo "$ ". number_format($item_price,2); ?></td>
+				<td style="text-align:center;"><a href="index.php?action=remove&code=<?php echo $item["code"]; ?>" class="btnRemoveAction"><img src="icon-delete.png" alt="Remove Item" /></a></td>
+				</tr>
+				<?php
+				$total_quantity += $item["quantity"];
+				$total_price += ($item["price"]*$item["quantity"]);
+		}
+		?>
+
+<tr>
+<td colspan="2" align="right">Total:</td>
+<td align="right"><?php echo $total_quantity; ?></td>
+<td align="right" colspan="2"><strong><?php echo "$ ".number_format($total_price, 2); ?></strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>		
+  <?php
+} else {
+?>
+<div class="no-records">Your Cart is Empty</div>
+<?php 
+}
+?>
+</div>
+    <!-- cart section end -->
+
+    <!-- Shop Section Begin -->
+
+
+
+
 
             <section class="product spad">
         <div class="container">
@@ -277,9 +247,6 @@
                                foreach($_SESSION["products"] as $keys => $values)  
                                {
                                    
-                             
-                                
-
 
                                 
     ?> 
@@ -295,26 +262,28 @@
                             </div>
                         </div>
                         <div class="product__item__text">
-                            <h6><a href="#"><?php echo $values["product_name"]; ?></a></h6>
+                            <h6><a href="cart.php"><?php echo $values["product_name"]; ?></a></h6>
                             <div class="product__item__price"><?php echo $values["price"]; ?></div>
+                            
                             <div class="cart_add">
 
-                               <form name="cart" id="cart" action="cart.php" method="POST">
+                               <form name="cart" id="cart" action="shopping.php" method="POST">
+                               <input type="hidden" name="image" value=<?php echo $values["image"]; ?> />
                                <input type="hidden" name="product_name" value=<?php echo $values["product_name"]; ?> />
                                <input type="hidden" name="price" value=<?php echo $values["price"]; ?> />
                                <input type="hidden" name="code" value=<?php echo $values["code"]; ?> />
-                               
+                            
                                 <input type="submit" value="Add to cart"> 
 
 
                                 
                                </form>
-                               >
+                               
 
 
 
 
-                                <?php echo $values["id"]; ?>
+                            
                             </div>
                         </div>
                     </div>
