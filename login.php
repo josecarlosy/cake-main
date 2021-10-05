@@ -23,7 +23,7 @@
                     <p>Please fill in your email and password.</p>
 
 
-                    <form action="welcome.php" method="post">
+                    <form action="userlogin.php" method="post">
 
                         <div class="form-group">
 
@@ -31,7 +31,8 @@
 
                             <input type="email" name="email" class="form-control" required />
 
-                        </div>    
+                        </div>  
+                        
 
                         <div class="form-group">
 
@@ -39,9 +40,12 @@
 
                             <input type="password" name="password" class="form-control" required>
                         </div>
+
+
+
                         <div class="form-group">
 
-                            <input type="submit" name="submit" class="btn btn-primary" value="submit">
+                            <input type="submit" name="submit" class="btn btn-primary" value="sent">
 
                         </div>
 

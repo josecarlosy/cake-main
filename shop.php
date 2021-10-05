@@ -1,4 +1,4 @@
-<?php   
+ <?php   
   session_start();  
   $connect = mysqli_connect("localhost", "padminuser", "phpadminpass", "main-cake");  
   
@@ -20,7 +20,7 @@
 
     
 
- ?> 
+ ?>  
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -30,7 +30,7 @@
     <meta name="keywords" content="Cake, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cake | Template</title>
+    <title>Cake | Shop</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
@@ -66,7 +66,7 @@
                 <a href="#"><img src="img/icon/heart.png" alt=""></a>
             </div>
             <div class="offcanvas__cart__item">
-                <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+                <a href="shopping.php"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
                 <div class="cart__price">Cart: <span>Ksh 0.00</span></div>
             </div>
         </div>
@@ -127,7 +127,7 @@
                                     <a href="#"><img src="img/icon/heart.png" alt=""></a>
                                 </div>
                                 <div class="header__top__right__cart">
-                                    <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+                                    <a href="shopping.php"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
                                     <div class="cart__price">Cart: <span>Ksh 0.00</span></div>
                                 </div>
                             </div>
@@ -177,57 +177,9 @@
 
     <!-- cart section begin-->
   
-<div class="txt-heading">Shopping Cart</div>
 
-<a id="btnEmpty" href="index.php?action=empty">Empty Cart</a>
-<?php
-if(isset($_SESSION["cart"])){
-    $total_quantity = 0;
-    $total_price = 0;
-?>	
-<table class="tbl-cart" cellpadding="10" cellspacing="1">
-<tbody>
-<tr>
-<th style="text-align:left;">product_name</th>
-<th style="text-align:left;">Code</th>
-<th style="text-align:right;" width="5%">Quantity</th>
-<th style="text-align:right;" width="10%">code</th>
-<th style="text-align:right;" width="10%">Price</th>
-<th style="text-align:center;" width="5%">Remove</th>
-</tr>	
-<?php		
-    foreach ($_SESSION["cart"] as $item){
-        $item_price = $item["quantity"]*$item["price"];
-		?>
-				<tr>
-				<td><img src="<?php echo $item["image"]; ?>" class="cart-item-image" /><?php echo $item["product_name"]; ?></td>
-				<td><?php echo $item["code"]; ?></td>
-				<td style="text-align:right;"><?php echo $item["quantity"]; ?></td>
-				<td  style="text-align:right;"><?php echo "$ ".$item["price"]; ?></td>
-				<td  style="text-align:right;"><?php echo "$ ". number_format($item_price,2); ?></td>
-				<td style="text-align:center;"><a href="index.php?action=remove&code=<?php echo $item["code"]; ?>" class="btnRemoveAction"><img src="icon-delete.png" alt="Remove Item" /></a></td>
-				</tr>
-				<?php
-				$total_quantity += $item["quantity"];
-				$total_price += ($item["price"]*$item["quantity"]);
-		}
-		?>
 
-<tr>
-<td colspan="2" align="right">Total:</td>
-<td align="right"><?php echo $total_quantity; ?></td>
-<td align="right" colspan="2"><strong><?php echo "$ ".number_format($total_price, 2); ?></strong></td>
-<td></td>
-</tr>
-</tbody>
-</table>		
-  <?php
-} else {
-?>
-<div class="no-records">Your Cart is Empty</div>
-<?php 
-}
-?>
+
 </div>
     <!-- cart section end -->
 
@@ -273,7 +225,7 @@ if(isset($_SESSION["cart"])){
                                <input type="hidden" name="price" value=<?php echo $values["price"]; ?> />
                                <input type="hidden" name="code" value=<?php echo $values["code"]; ?> />
                             
-                                <input type="submit" value="Add to cart"> 
+                                <input type="submit" name="submit" id="submit" value="Add to cart"> 
 
 
                                 
@@ -390,19 +342,20 @@ if(isset($_SESSION["cart"])){
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/jquery.nicescroll.min.js"></script>
 <script src="js/main.js"></script>
-</body>
 
 <script>
-// $('#cart').submit(function(e){
-//     e.preventDefault();
-//     $.ajax({
-//         url: 'cart.php',
-//         type: 'post',
-//         data:$('#cart').serialize(),
-//         success:function(){
-//             console.log("data has been added to session.");
-//         }
-//     });
-// })
+    
+$('form').click(function(e){
+    e.preventDefault();
+    $.ajax({
+        url: 'shopping.php',
+        type: 'POST',
+        data:$('#cart').serialize(),
+        success:function(){
+           
+        }
+    });
+})
  </script>
+ </body>
 </html>

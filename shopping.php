@@ -1,3 +1,38 @@
+<div class="topnav">
+  <a class="active" href="index.php">Home</a>
+  <a href="about.php">About</a>
+  <a href="shop.php">Shop</a>
+  <a href="contact.php">Contact</a>
+</div> 
+<style>
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color:   #df820d  ;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color:  # #f3ede5  ;
+  text-align: center;
+  padding: 16px 18px;
+  text-decoration: none;
+  font-size: 22px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: white;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #0a0a0a ;
+  color: white;
+}
+</style>
 <?php
 session_start();
 
@@ -179,14 +214,7 @@ body {
 
 </style>
 
-<TITLE>Jose cake Shop</TITLE>
-<link href="style.css" type="text/css" rel="stylesheet" />
-</HEAD>
-<BODY>
-<div id="shopping-cart">
-<div class="txt-heading">Shopping Cart</div>
 
-<a id="btnEmpty" href="index.php?action=empty">Empty Cart</a>
 <?php
 if(isset($_SESSION["cart"])){
     $total_quantity = 0;
@@ -213,6 +241,7 @@ if(isset($_SESSION["cart"])){
                 <td><?php echo $item["code"]; ?></td>
 				<td  style="text-align:right;"><?php echo "Ksh ".$item["price"]; ?></td>
 				<td  style="text-align:right;"><?php echo "Ksh ". number_format($item_price,2); ?></td>
+				
 				<td style="text-align:center;"><a href="cart_remove.php?action=remove&code=<?php echo $item["code"]; ?>" class="btnRemoveAction"><img src="icon-delete.png" alt="Remove Item" /></a></td>
 
 				

@@ -7,7 +7,7 @@
     <meta name="keywords" content="Cake, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cake | Template</title>
+    <title>cake shop</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
@@ -43,7 +43,7 @@
                 <a href="#"><img src="img/icon/heart.png" alt=""></a>
             </div>
             <div class="offcanvas__cart__item">
-                <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+                <a href="shopping.php"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
                 <div class="cart__price">Cart: <span>Ksh0.00</span></div>
             </div>
         </div>
@@ -104,7 +104,7 @@
                                     <a href="#"><img src="img/icon/heart.png" alt=""></a>
                                 </div>
                                 <div class="header__top__right__cart">
-                                    <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+                                    <a href="shopping.php"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
                                     <div class="cart__price">Cart: <span>Ksh0.00</span></div>
                                 </div>
                             </div>
@@ -119,9 +119,9 @@
                 <div class="col-lg-12">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li><a href="./index.php">Home</a></li>
-                            <li><a href="./about.php">About</a></li>
-                            <li><a href="./shop.php">Shop</a></li>
+                            <li><a href="index.php">Home</a></li>
+                            <li><a href="about.php">About</a></li>
+                            <li><a href="shop.php">Shop</a></li>
                             <!-- <li><a href="#">Pages</a>
                                 <ul class="dropdown">
                                     <li><a href="./shop-details.php">Shop Details</a></li>
@@ -133,7 +133,7 @@
                                 </ul>
                             </li> --> 
                             <!-- <li><a href="./blog.html">Blog</a></li> -->
-                            <li class="active"><a href="./contact.php">Contact</a></li>
+                            <li class="active"><a href="contact.php">Contact</a></li>
                         </ul>
                     </nav>
                 </div>

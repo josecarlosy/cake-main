@@ -1,9 +1,13 @@
 <?php
-    require 'dbcontroller.php';
-    session_start();
-    $item_id=$_GET['id'];
-    $user_id=$_SESSION['id'];
-    $delete_query="delete from users_items where user_id='$user_id' and item_id='$item_id'";
-    $delete_query_result=mysqli_query($con,$delete_query) or die(mysqli_error($con));
-    header('location: shopping.php');
+error_reporting(0);
+$item_id = $_GET["id"];
+session_start();
+if (!empty($_SESSION["incart"])) {
+    foreach ($_SESSION["incart"] as $select => $val) {
+        if($val["id"] == $item_id)
+        {
+            unset($_SESSION["incart"][$select]);
+        }
+    }
+}
 ?>

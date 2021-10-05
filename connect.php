@@ -22,7 +22,7 @@
           
         // Performing insert query execution
         // here our table name is table_by_clients
-        $sql = "INSERT INTO table_by_clients  VALUES ('$Full_Name', 
+        $sql = "INSERT INTO table_by_clients  (fullName,emailAddress,userPassword,confirmPassword) VALUES ('$Full_Name', 
             '$Email_Address','$Password','$Confirm_Password')";
           
         if(mysqli_query($conn, $sql)){

@@ -22,21 +22,24 @@ session_start();
 
   if(isset($_POST['submit']))
   {
-    $email = $_POST['email'];
+    $emailAddress = $_POST['email'];
     $password = $_POST['password'];
-   $get_products_sql = "SELECT emailAddress, userPassword FROM table_by_clients WHERE emailAddress=$Email_Address";
-   $result = $connect->query($get_products_sql);
+   $useremail = "SELECT emailAddress, userPassword FROM table_by_clients WHERE emailAddress='$emailAddress'";
+   $result = $connect->query($useremail);
 
 
 
-   $result=mysqli_fetch_array($get_products_sql);
+   
 if($result)
 {
-echo "You are login Successfully ";
+  
+  header("Location: shop.php");
+  exit();
+  
 }
 else
 {
-	echo "failed ";
+	echo $result;
 
 //    $_SESSION['userid']=mysqli_fetch_all($user,MYSQLI_ASSOC);
 // if ($result->num_rows > 0) {
