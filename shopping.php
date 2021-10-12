@@ -272,8 +272,32 @@ if(isset($_SESSION["cart"])){
 ?>
 
 </div>
-<form name="cart" id="cart" action="signup.php" method="POST">
- <input type="submit" value="Proceed to Checkout"> 
-</form>
+<form class="paypal" action="payments.php" method="post" id="paypal_form">
+        <input type="hidden" name="cmd" value="_xclick" />
+        <input type="hidden" name="txn_id" value="12345" />
+        <input type="hidden" name="txn_type" value="personal" />
+        <input type="hidden" name="no_note" value="1" />
+        <input type="hidden" name="lc" value="UK" />
+        <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynow_LG.gif:NonHostedGuest" />
+
+        <input type="hidden" name="first_name" value="Customer's First Name" />
+        <input type="hidden" name="last_name" value="Customer's Last Name" />
+        
+        <input type="hidden" name="item_number" value="item number" />
+        <input type="hidden" name="item_name" value="item name" />
+        <input type="hidden" name="createdtime" value="2021-10-11 16:25:51" />
+
+        <input type="hidden" name="itemid" value="345" />
+        <input type="hidden" name="payment_status" value="payment status" />
+        <input type="hidden" name="payment_currency" value="currency" />
+        <input type="hidden" name="payer_email" value="payer's email" />
+        <input type="hidden" name="payment_amount" value="payment gross amount" />
+    
+        <input type="hidden" name="total_price" value= "<?php echo $total_price;?>"/>
+        <div class="paypal">
+    <input type="submit" value= "proceed to payments" name="paypal"> <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png" border="0" alt="PayPal Logo"></input>
+</div>
+    </form>
+
 </BODY>
 </HTML>
