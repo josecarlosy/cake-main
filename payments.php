@@ -54,7 +54,7 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])) {
 	// and currency so that these aren't overridden by the form data.
 	$data['item_name'] = $itemName;
 	$data['amount'] = $itemAmount;
-	$data['currency_code'] = 'GBP';
+	$data['currency_code'] ='GBP';
 
 	// Add any custom fields for the query string.
 	//$data['custom'] = USERID;
@@ -75,20 +75,15 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])) {
 
 	// Assign posted variables to local data array.
 	$data = array(
-		'first_name' => $_POST['first_name'],
-		'itemid' => $_POST['itemid'],
+		'username'=> $_POST['username'],
 		'createdtime' => $_POST['createdtime'],
-		'last_name' => $_POST['last_name'],
-		'item_name' => $_POST['item_name'],
-		'item_number' => $_POST['item_number'],
 		'payment_status' => $_POST['payment_status'],
-		'payment_amount' => $_POST['mc_gross'],
-		'payment_currency' => $_POST['mc_currency'],
+		'payment_amount' => $_POST['payment_amount'],
 		'txn_id' => $_POST['txn_id'],
-		// 'receiver_email' => $_POST['receiver_email'],
-		'payer_email' => $_POST['payer_email'],
-		// 'custom' => $_POST['custom'],
+		
 	);
+	
+
 	
 	// We need to verify the transaction comes from PayPal and check we've not
 	// already processed the transaction before adding the payment to our
@@ -97,10 +92,12 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])) {
 		if (checkTxnid($data['txn_id'])) {
 
 		if (addPayment($data) !== false) {
-			echo "Payment successfully added";
+			echo "Payment has been successfully added";
+			echo $_POST['txn_id'];
 		}
 	}
+	
 	else{
-		echo "Pot verified or";
+		echo "not added, go back to codes";
 	}
 }

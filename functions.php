@@ -68,22 +68,23 @@ function checkTxnid($txnid) {
 /**
  * Add payment to database
  *
- * @param array $data Payment data
+ *@param array $data Payment data
  * @return int|bool ID of new payment or false if failed
  */
 function addPayment($data) {
 	global $db;
 
+
 	if (is_array($data)) {
-		$stmt = $db->prepare("INSERT INTO `payments` (txnid, payment_amount, payment_status, itemid, createdtime) VALUES(?,?,?,?,?)");
+		$stmt = $db->prepare ("INSERT INTO payments (txnid, payment_amount, payment_status, createdtime, username) VALUES(?,?,?,?,?)");
+		
 		$stmt->bind_param(
-			'sssss',
+			'sdsss',
 			$data['txn_id'],
 			$data['payment_amount'],
 			$data['payment_status'],
-			$data['itemid'],
-			$data['createdtime']
-			// date('Y-m-d H:i:s')
+			$data['createdtime'],
+			$data['username'],
 		);
 		$stmt->execute();
 		$stmt->close();
@@ -93,3 +94,6 @@ function addPayment($data) {
 
 	return false;
 }
+
+
+// mysql_query("insert into payments ($txn_id,$payment_amount,$payment_status,$itemid,$createdtime)");

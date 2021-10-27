@@ -26,7 +26,20 @@ Removing copyright information without the license will result in suspension of 
                 </div>
                            
 
+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
 
-                           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
 
-                           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
+
+
+detete one button remeain one
+
+
+>>customer selefcts products
+>>checkout
+{generate a txn_id} >> timedate;username
+>>details taken to paypal
+>>txn_id is checked if it exists
+>>if not exists, transaction done and added to db
+
+//create a page which shows user's orders
+-->read from payments table;

@@ -103,10 +103,10 @@
                         <div class="header__top__inner">
                             <div class="header__top__left">
                                 <ul>
-                                    <li>KSH <span class="arrow_carrot-down"></span>
+                                    <li>USD <span class="arrow_carrot-down"></span>
                                         <ul>
-                                            <li>KSH</li>
-                                            <li>USH</li>
+                                            <li>USD</li>
+                                            <li>USD</li>
                                         </ul>
                                     </li>
                                     <li>ENG <span class="arrow_carrot-down"></span>

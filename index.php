@@ -58,9 +58,9 @@
         <div id="mobile-menu-wrap"></div>
         <div class="offcanvas__option">
             <ul>
-                <li>KSH <span class="arrow_carrot-down"></span>
+                <li>USD <span class="arrow_carrot-down"></span>
                     <ul>
-                        <li>KSH</li>
+                        <li>USD</li>
                         <li>USH</li>
                     </ul>
                 </li>
@@ -85,9 +85,9 @@
                         <div class="header__top__inner">
                             <div class="header__top__left">
                                 <ul>
-                                    <li>KSH <span class="arrow_carrot-down"></span>
+                                    <li>USD <span class="arrow_carrot-down"></span>
                                         <ul>
-                                            <li>KSH</li>
+                                            <li>USD</li>
                                             <li>USH</li>
                                         </ul>
                                     </li>
@@ -127,16 +127,6 @@
                             <li class="active"><a href="./index.php">Home</a></li>
                             <li><a href="./about.php">About</a></li>
                             <li><a href="./shop.php">Shop</a></li>
-                            <!-- <li><a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="./shop-details.php">Shop Details</a></li>
-                                    <li><a href="./shoping-cart.php">Shoping Cart</a></li>
-                                    <li><a href="./checkout.php">Check Out</a></li>
-                                    <li><a href="./wisslist.php">Wisslist</a></li>
-                                   <!-  <li><a href="./Class.html">Class</a></li> -->
-                                 <!--    <li><a href="./blog-details.php">Blog Details</a></li>
-                                </ul>
-                            </li> --> <!-- --> 
                             <li><a href="./contact.php">Contact</a></li>
                         </ul>
                     </nav>
@@ -154,7 +144,7 @@
                     <div class="row d-flex justify-content-center">
                         <div class="col-lg-8">
                             <div class="hero__text">
-                                <h2>Making your life more sweeter than yesterday!</h2>
+                                <h2>The only thing we’re serious about is cakes for our customers.</h2>
                                 <a href="#" class="primary-btn">Our cakes</a>
                             </div>
                         </div>

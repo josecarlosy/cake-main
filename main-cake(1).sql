@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 24, 2021 at 11:02 AM
+-- Generation Time: Oct 27, 2021 at 10:30 AM
 -- Server version: 10.3.31-MariaDB-0ubuntu0.20.04.1
 -- PHP Version: 7.4.3
 
@@ -21,6 +21,54 @@ SET time_zone = "+00:00";
 --
 -- Database: `main-cake`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payments`
+--
+
+CREATE TABLE `payments` (
+  `id` int(6) NOT NULL,
+  `txnid` varchar(20) NOT NULL,
+  `payment_amount` decimal(7,2) NOT NULL,
+  `payment_status` varchar(25) NOT NULL,
+  `itemid` varchar(25) NOT NULL,
+  `createdtime` datetime NOT NULL,
+  `username` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `payments`
+--
+
+INSERT INTO `payments` (`id`, `txnid`, `payment_amount`, `payment_status`, `itemid`, `createdtime`, `username`) VALUES
+(4, '12345', '0.00', 'payment status', '345', '2021-10-11 16:25:51', ''),
+(5, '22345', '0.00', 'payment status', '445', '2021-10-11 12:00:51', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `table_by_clients`
+--
+
+CREATE TABLE `table_by_clients` (
+  `id` int(11) NOT NULL COMMENT 'userid',
+  `fullName` varchar(255) NOT NULL,
+  `emailAddress` varchar(255) NOT NULL,
+  `userPassword` varchar(255) NOT NULL,
+  `confirmPassword` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `table_by_clients`
+--
+
+INSERT INTO `table_by_clients` (`id`, `fullName`, `emailAddress`, `userPassword`, `confirmPassword`) VALUES
+(1, 'joseph karanja', '6karanjajoseph@gmail.com', '34777899', '34777899'),
+(2, 'james patoo', 'jamespatoo@gmail.com', '111111', '111111'),
+(5, 'john patoo', 'johnpatoo@gmail.com', '222222', '222222'),
+(6, 'maggy kamau', 'maggykamau@gmail.com', '333333', '333333');
 
 -- --------------------------------------------------------
 
@@ -62,9 +110,41 @@ INSERT INTO `tblproduct` (`id`, `product_name`, `code`, `image`, `price`) VALUES
 (19, 'Butterscoth Delight', 'jfjg', 'img/shop/FGCCAKE6-butterscoth-delight-260x260.jpg\r\n', 345.00),
 (20, 'Do-cake', 'joip', 'img/shop/pumpkin-dog-cake-recipe-09.2019-2-769x1024.webp\r\n', 500.00);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `test`
+--
+
+CREATE TABLE `test` (
+  `id` int(11) NOT NULL,
+  `kitu` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `test`
+--
+
+INSERT INTO `test` (`id`, `kitu`) VALUES
+(1, 'heri ugali'),
+(2, 'test mode');
+
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `table_by_clients`
+--
+ALTER TABLE `table_by_clients`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `emailAddress` (`emailAddress`);
 
 --
 -- Indexes for table `tblproduct`
@@ -74,14 +154,38 @@ ALTER TABLE `tblproduct`
   ADD UNIQUE KEY `product_code` (`code`);
 
 --
+-- Indexes for table `test`
+--
+ALTER TABLE `test`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `table_by_clients`
+--
+ALTER TABLE `table_by_clients`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'userid', AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tblproduct`
 --
 ALTER TABLE `tblproduct`
   MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `test`
+--
+ALTER TABLE `test`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
