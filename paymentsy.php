@@ -15,19 +15,19 @@ $dbConfig = [
 // PayPal settings. Change these to your account details and the relevant URLs
 // for your site.
 $paypalConfig = [
-	'email' => '6karanjajoseph@gmail.com',
-	'return_url' => 'payment-successful.php',
-	'cancel_url' => 'payment-cancelled.php',
-	'notify_url' => 'payments.php'
+	'email' => 'user@example.com',
+	'return_url' => 'http://example.com/payment-successful.html',
+	'cancel_url' => 'http://example.com/payment-cancelled.html',
+	'notify_url' => 'http://example.com/payments.php'
 ];
 
 $paypalUrl = $enableSandbox ? 'https://www.sandbox.paypal.com/cgi-bin/webscr' : 'https://www.paypal.com/cgi-bin/webscr';
 
 // Product being purchased.
-
 $itemName = 'Test Item';
 // $itemAmount = 10;
 $itemAmount = $_POST["total_price"];
+
 // Include Functions
 require 'functions.php';
 
@@ -72,7 +72,6 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])) {
 	// Create a connection to the database.
 	$db = new mysqli($dbConfig['host'], $dbConfig['username'], $dbConfig['password'], $dbConfig['name']);
 
-
 	// Assign posted variables to local data array.
 	$data = array(
 		'username'=> $_POST['username'],
@@ -82,20 +81,12 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])) {
 		'txn_id' => $_POST['txn_id'],
 		
 	);
-	
-
-	
 	// We need to verify the transaction comes from PayPal and check we've not
 	// already processed the transaction before adding the payment to our
 	// database.
-	 if (verifyTransaction($_POST) && checkTxnid($data['txn_id'])) {
-		 {
-
+	if (verifyTransaction($_POST) && checkTxnid($data['txn_id'])) {
 		if (addPayment($data) !== false) {
-			
-			
+			// Payment successfully added.
 		}
 	}
-	
-}
 }

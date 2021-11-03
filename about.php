@@ -43,7 +43,7 @@
                 <a href="#"><img src="img/icon/heart.png" alt=""></a>
             </div>
             <div class="offcanvas__cart__item">
-                <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+                <a href="shopping.php"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
                 <div class="cart__price">Cart: <span>Ksh0.00</span></div>
             </div>
         </div>
@@ -121,19 +121,10 @@
                         <ul>
                             <li><a href="./index.php">Home</a></li>
                             <li class="active"><a href="./about.php">About</a></li>
-                            <li><a href="./shop.html">Shop</a></li>
-                            <!-- <li><a href="#">Pages</a>
-                                <ul class="dropdown">
-                                  <li><a href="./shop-details.php">Shop Details</a></li>
-                                    <li><a href="./shoping-cart.php">Shoping Cart</a></li>
-                                    <li><a href="./checkout.php">Check Out</a></li>
-                                    <li><a href="./wisslist.php">Wisslist</a></li>
-                               <!-     <!-<li><a href="./Class.html">Class</a></li>
-                                    <li><a href="./blog-details.php">Blog Details</a></li>
-                                </ul>
-                            </li>  --><!-- -> -->  
-                             <!-- <li><a href="./blog.html">Blog</a></li> --> <!-- --> 
+                            <li><a href="./shop.php">Shop</a></li>
+                        
                             <li><a href="./contact.php">Contact</a></li>
+                            <li><a href="./help.php">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -178,7 +169,7 @@
                   <div class="card-body">
                     <img
                       src="https://ik.imagekit.io/2a1in3cldn/about_image/about_us_pic_YfI5BwYeO.jpg"
-                      alt="Hansel's Bakery About Page Image - It is an image of exotic macaroons"
+                      alt="We have the best serivices in kenya, try us and you will get what you order at our best quality ever."
                       class="card-img-top img-fluid"
                     />
                   </div>
@@ -225,7 +216,7 @@
                           data-height="24px"
                         ></span>
                         All the eggs we use are free range, laid by hens that
-                        roost in the UK.
+                        roost in the kenya.
                       </p>
                       <p>
                         <span

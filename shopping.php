@@ -283,14 +283,14 @@ $txn_id = uniqid();
 
  //send user name; -->  
 
-<form class="paypal" action="payments.php" method="post" id="paypal_form">
-        <input type="hidden" name="createdtime" value="2021-10-11 13:50:51" />
+<form class="paypal" action="paymentsy.php" method="post" id="paypal_form">
+        <input type="hidden" name="createdtime" value=echo "createdtime" . date("Y/m/d") .;
          <input type="hidden" name="txn_id" value="<?php echo $txn_id;?>"/>
         <input type="hidden" name="payment_status" value="payment status" />
-        <input type="hidden" name="username" value="user" />
+        <input type="hidden" name="username" value="<?php echo $username;?>"/>
         <input type="hidden" name="payment_amount" value= "<?php echo $total_price;?>"/>
         <div class="paypal">
-    <input type="submit" value= "proceed to payments" name="paypal"> <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png" border="0" alt="PayPal Logo"></input>
+    <input type="submit" value= "proceed to payments" name="paypal"> <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png" border="0" alt=""></input>
 </div>
     </form>
 
