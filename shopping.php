@@ -3,6 +3,20 @@
   <a href="about.php">About</a>
   <a href="shop.php">Shop</a>
   <a href="contact.php">Contact</a>
+  <?php
+                if(!empty($_SESSION["cart"])) {
+                $cart_count = count(array_keys($_SESSION["cart"]));
+                ?>
+                <div class="cart_div">
+                <a href="shopping.php"><img src="img/cartimg.jpg" width="50" height="50"><span>
+                <?php echo $cart_count; ?></span></a>
+                
+                </div>
+                <?php
+                }
+                ?>
+                                    
+                                </div>
 </div> 
 <style>
 /* Add a black background color to the top navigation */
@@ -242,9 +256,8 @@ if(isset($_SESSION["cart"])){
 				<td  style="text-align:right;"><?php echo "Ksh ".$item["price"]; ?></td>
 				<td  style="text-align:right;"><?php echo "Ksh ". number_format($item_price,2); ?></td>
 				
-				<td style="text-align:center;"><a href="cart_remove.php?action=remove&code=<?php echo $item["code"]; ?>" class="btnRemoveAction"><img src="icon-delete.png" alt="Remove Item" /></a></td>
+<td><a href="index.php?action=remove&id=<?php echo $item["id"]; ?>" class="btnRemoveAction">Remove Item</a></td>
 
-				
 				</tr>
 				<?php
 				$total_quantity += $item["quantity"];
@@ -275,6 +288,9 @@ if(isset($_SESSION["cart"])){
 <?php
 
 $txn_id = uniqid();
+$username= $_SESSION['username'];
+//$usermail= "usermail";
+
 ?> 
  <!-- //get userid from session
 //create a uniqie txn_id
@@ -283,16 +299,24 @@ $txn_id = uniqid();
 
  //send user name; -->  
 
-<form class="paypal" action="paymentsy.php" method="post" id="paypal_form">
-        <input type="hidden" name="createdtime" value=echo "createdtime" . date("Y/m/d") .;
-         <input type="hidden" name="txn_id" value="<?php echo $txn_id;?>"/>
+ <form class="paypal" action="payments.php" method="post" id="paypal_form">
+        <input type="hidden" name="cmd" value="_xclick" />
+        <input type="hidden" name="no_note" value="1" />
+        <input type="hidden" name="lc" value="kenya" />
+        <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynow_LG.gif:NonHostedGuest" />
+        <input type="hidden" name="createdtime" value=<?php
+echo date("r");
+?>;>
         <input type="hidden" name="payment_status" value="payment status" />
-        <input type="hidden" name="username" value="<?php echo $username;?>"/>
+        <!-- <input type="hidden" name="txn_id" value= "youui"/> -->
+        <input type="hidden" name="username" value="<?php echo $username ?>"/>
         <input type="hidden" name="payment_amount" value= "<?php echo $total_price;?>"/>
-        <div class="paypal">
-    <input type="submit" value= "proceed to payments" name="paypal"> <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png" border="0" alt=""></input>
-</div>
+
+        <input type="submit" value= "proceed to payments" name="paypal"> <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png" border="0" alt=""></input>
     </form>
 
+
+
+   
 </BODY>
 </HTML>

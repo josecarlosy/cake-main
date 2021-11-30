@@ -35,40 +35,7 @@
     </div>
 
     <!-- Offcanvas Menu Begin -->
-    <div class="offcanvas-menu-overlay"></div>
-    <div class="offcanvas-menu-wrapper">
-        <div class="offcanvas__cart">
-            <div class="offcanvas__cart__links">
-                <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-                <a href="#"><img src="img/icon/heart.png" alt=""></a>
-            </div>
-            <div class="offcanvas__cart__item">
-                <a href="shopping.php"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
-                <div class="cart__price">Cart: <span>Ksh0.00</span></div>
-            </div>
-        </div>
-        <div class="offcanvas__logo">
-            <a href="./index.html"><img src="img/logo.png" alt=""></a>
-        </div>
-        <div id="mobile-menu-wrap"></div>
-        <div class="offcanvas__option">
-            <ul>
-                <li>KSH <span class="arrow_carrot-down"></span>
-                    <ul>
-                        <li>KSH</li>
-                        <li>USH</li>
-                    </ul>
-                </li>
-                <li>ENG <span class="arrow_carrot-down"></span>
-                    <ul>
-                        <li>ENG</li>
-                        <li>ENG</li>
-                    </ul>
-                </li>
-                <li><a href="#">Sign in</a> <span class="arrow_carrot-down"></span></li>
-            </ul>
-        </div>
-    </div>
+   
     <!-- Offcanvas Menu End -->
 
     <!-- Header Section Begin -->
@@ -91,21 +58,35 @@
                                             <li>ENG</li>
                                             <li>ENG</li>
                                         </ul>
+                                        <li>
+                                        <?php if($_SESSION['loggedin']!='!true') : ?>
+                                        <a href="register.php">Sign in </a> <span class="arrow_carrot-down"></span>
+                                        <?php endif; ?>
                                     </li>
-                                    <li><a href="#">Sign in</a> <span class="arrow_carrot-down"></span></li>
                                 </ul>
                             </div>
                             <div class="header__logo">
-                                <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                                <a href="index.php"><img src="img/logo.png" alt=""></a>
                             </div>
                             <div class="header__top__right">
                                 <div class="header__top__right__links">
-                                    <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-                                    <a href="#"><img src="img/icon/heart.png" alt=""></a>
-                                </div>
+                                <?php
+                if(!empty($_SESSION["cart"])) {
+                $cart_count = count(array_keys($_SESSION["cart"]));
+                ?>
+                <div class="cart_div">
+                <a href="shopping.php"><img src="img/cartimg.jpg" width="50" height="50"><span>
+                <?php echo $cart_count; ?></span></a>
+                
+                </div>
+                <?php
+                }
+                ?>
+                              </div>
+
+                                
                                 <div class="header__top__right__cart">
-                                    <a href="shopping.php"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
-                                    <div class="cart__price">Cart: <span>Ksh0.00</span></div>
+                                <a href="register.php">LOGOUT </a> <span class="arrow_carrot-down"></span>
                                 </div>
                             </div>
                         </div>
@@ -122,17 +103,6 @@
                             <li><a href="index.php">Home</a></li>
                             <li><a href="about.php">About</a></li>
                             <li><a href="shop.php">Shop</a></li>
-                            <!-- <li><a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="./shop-details.php">Shop Details</a></li>
-                                    <li><a href="./shoping-cart.php">Shoping Cart</a></li>
-                                    <li><a href="./checkout.php">Check Out</a></li>
-                                    <li><a href="./wisslist.php">Wisslist</a></li>
-                                   <!-  <li><a href="./Class.html">Class</a></li> -->
-                               <!--      <li><a href="./blog-details.php">Blog Details</a></li>
-                                </ul>
-                            </li> --> 
-                            <!-- <li><a href="./blog.html">Blog</a></li> -->
                             <li class="active"><a href="contact.php">Contact</a></li>
                         </ul>
                     </nav>

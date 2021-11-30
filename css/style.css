@@ -4085,3 +4085,139 @@ input[type='submit']:hover {
 .paypal button:hover {
 	background-color: #f3bb37;
 }
+body { 
+  font-family:Arial, Sans-Serif; 
+} 
+.clearfix:before, .clearfix:after{ 
+  content: ""; 
+  display: table; 
+} 
+.clearfix:after{ 
+  clear: both; 
+} 
+a{ 
+  color:#0067ab; 
+  text-decoration:none; 
+} 
+a:hover{ 
+  text-decoration:underline; 
+} 
+.form{ 
+  width: 300px; 
+  margin: 0 auto; 
+} 
+input[type='text'], input[type='email'], 
+input[type='password'] { 
+  width: 200px; 
+  border-radius: 2px; 
+  border: 1px solid #CCC; 
+  padding: 10px; 
+  color: #333; 
+  font-size: 14px; 
+  margin-top: 10px; 
+} 
+input[type='submit']{ 
+  padding: 10px 25px 8px; 
+  color: #fff; 
+  background-color: #0067ab; 
+  text-shadow: rgba(0,0,0,0.24) 0 1px 0; 
+  font-size: 16px; 
+  box-shadow: rgba(255,255,255,0.24) 0 2px 0 0 inset,#fff 0 1px 0 0; 
+  border: 1px solid #0164a5; 
+  border-radius: 2px; 
+  margin-top: 10px; 
+  cursor:pointer; 
+} 
+input[type='submit']:hover { 
+  background-color: #024978; 
+} 
+
+
+
+body {
+	color: #fff;
+	background: #19aa8d;
+	font-family: 'Roboto', sans-serif;
+}
+.form-control {
+	font-size: 15px;
+}
+.form-control, .form-control:focus, .input-group-text {
+	border-color: #e1e1e1;
+}
+.form-control, .btn {        
+	border-radius: 3px;
+}
+.signup-form {
+	width: 400px;
+	margin: 0 auto;
+	padding: 30px 0;		
+}
+.signup-form form {
+	color: #999;
+	border-radius: 3px;
+	margin-bottom: 15px;
+	background: #fff;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	padding: 30px;
+}
+.signup-form h2 {
+	color: #333;
+	font-weight: bold;
+	margin-top: 0;
+}
+.signup-form hr {
+	margin: 0 -30px 20px;
+}
+.signup-form .form-group {
+	margin-bottom: 20px;
+}
+.signup-form label {
+	font-weight: normal;
+	font-size: 15px;
+}
+.signup-form .form-control {
+	min-height: 38px;
+	box-shadow: none !important;
+}	
+.signup-form .input-group-addon {
+	max-width: 42px;
+	text-align: center;
+}	
+.signup-form .btn, .signup-form .btn:active {        
+	font-size: 16px;
+	font-weight: bold;
+	background: #19aa8d !important;
+	border: none;
+	min-width: 140px;
+}
+.signup-form .btn:hover, .signup-form .btn:focus {
+	background: #179b81 !important;
+}
+.signup-form a {
+	color: #fff;	
+	text-decoration: underline;
+}
+.signup-form a:hover {
+	text-decoration: none;
+}
+.signup-form form a {
+	color: #19aa8d;
+	text-decoration: none;
+}	
+.signup-form form a:hover {
+	text-decoration: underline;
+}
+.signup-form .fa {
+	font-size: 21px;
+}
+.signup-form .fa-paper-plane {
+	font-size: 18px;
+}
+.signup-form .fa-check {
+	color: #fff;
+	left: 17px;
+	top: 18px;
+	font-size: 7px;
+	position: absolute;
+}

@@ -58,40 +58,7 @@
     </div>
 
     <!-- Offcanvas Menu Begin -->
-    <div class="offcanvas-menu-overlay"></div>
-    <div class="offcanvas-menu-wrapper">
-        <div class="offcanvas__cart">
-            <div class="offcanvas__cart__links">
-                <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-                <a href="#"><img src="img/icon/heart.png" alt=""></a>
-            </div>
-            <div class="offcanvas__cart__item">
-                <a href="shopping.php"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
-                <div class="cart__price">Cart: <span>Ksh 0.00</span></div>
-            </div>
-        </div>
-        <div class="offcanvas__logo">
-            <a href="./index.php"><img src="img/logo.png" alt=""></a>
-        </div>
-        <div id="mobile-menu-wrap"></div>
-        <div class="offcanvas__option">
-            <ul>
-                <li>USD <span class="arrow_carrot-down"></span>
-                    <ul>
-                        <li>Ush</li>
-                        <li>Ksh</li>
-                    </ul>
-                </li>
-                <li>ENG <span class="arrow_carrot-down"></span>
-                    <ul>
-                        <li>ENG</li>
-                        <li>ENG</li>
-                    </ul>
-                </li>
-                <li><a href="signup.php">Sign in</a> <span class="arrow_carrot-down"></span></li>
-            </ul>
-        </div>
-    </div>
+    
     <!-- Offcanvas Menu End -->
 
     <!-- Header Section Begin -->
@@ -114,21 +81,50 @@
                                             <li>ENG</li>
                                             <li>ENG</li>
                                         </ul>
+                                        <li>
+                                        
+                                        <?php if (isset($_SESSION['success'])) : ?>
+      <div class="error success" >
+      	<h3>
+          <?php 
+          	echo $_SESSION['success']; 
+          	unset($_SESSION['success']);
+          ?>
+          </h3>
+      </div>
+  	<?php endif ?>
+      <?php  if (isset($_SESSION['username'])) : ?>
+        
+    	<p>Welcome <strong><?php echo $_SESSION['username']; ?></strong></p>
+    	<p> <a href="logout.php" style="color: red;">logout</a> </p>
+    <?php endif ?>
+</div>
                                     </li>
-                                    <li><a href="signup.php">Sign in</a> <span class="arrow_carrot-down"></span></li>
                                 </ul>
+                                
                             </div>
                             <div class="header__logo">
                                 <a href="./index.php"><img src="img/logo.png" alt=""></a>
                             </div>
                             <div class="header__top__right">
                                 <div class="header__top__right__links">
-                                    <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-                                    <a href="#"><img src="img/icon/heart.png" alt=""></a>
+                                <?php
+                if(!empty($_SESSION["cart"])) {
+                $cart_count = count(array_keys($_SESSION["cart"]));
+                ?>
+                <div class="cart_div">
+                <a href="shopping.php"><img src="img/cartimg.jpg" width="50" height="50"><span>
+                <?php echo $cart_count; ?></span></a>
+                
+                </div>
+                <?php
+                }
+                ?>
+                                    
                                 </div>
+
+                                
                                 <div class="header__top__right__cart">
-                                    <a href="shopping.php"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
-                                    <div class="cart__price">Cart: <span>Ksh 0.00</span></div>
                                 </div>
                             </div>
                         </div>
@@ -219,18 +215,18 @@
                             
                             <div class="cart_add">
 
-                               <form name="cart" id="cart" action="shopping.php" method="POST">
+                               <form id="cart" id="cart" action="shopping.php" method="POST">
+                               <input type="hidden" name="return_to" value="back" />
                                <input type="hidden" name="image" value=<?php echo $values["image"]; ?> />
                                <input type="hidden" name="product_name" value=<?php echo $values["product_name"]; ?> />
                                <input type="hidden" name="price" value=<?php echo $values["price"]; ?> />
                                <input type="hidden" name="code" value=<?php echo $values["code"]; ?> />
-                            
                                 <input type="submit" name="submit" id="submit" value="Add to cart"> 
-
-
-                                
                                </form>
+                            
                                
+</script>
+
 
 
 
@@ -343,19 +339,6 @@
 <script src="js/jquery.nicescroll.min.js"></script>
 <script src="js/main.js"></script>
 
-<script>
-    
-$('form').click(function(e){
-    e.preventDefault();
-    $.ajax({
-        url: 'shopping.php',
-        type: 'POST',
-        data:$('#cart').serialize(),
-        success:function(){
-           
-        }
-    });
-})
- </script>
+
  </body>
 </html>

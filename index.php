@@ -1,7 +1,13 @@
 
+<?php 
+  session_start(); 
 
-
-
+  if (!isset($_SESSION['username'])) {
+  	$_SESSION['msg'] = "You must log in first";
+  	header('location: register.php');
+  }
+ 
+?>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -31,49 +37,24 @@
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+
+
+    
 </head>
 
 <body>
+<?php 
+session_start();
+
+?>
+
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
     </div>
 
     <!-- Offcanvas Menu Begin -->
-    <div class="offcanvas-menu-overlay"></div>
-    <div class="offcanvas-menu-wrapper">
-        <div class="offcanvas__cart">
-            <div class="offcanvas__cart__links">
-                <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-                <a href="#"><img src="img/icon/heart.png" alt=""></a>
-            </div>
-            <div class="offcanvas__cart__item">
-                <a href="shopping.php"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
-                <div class="cart__price">Cart: <span>Ksh</span></div>
-            </div>
-        </div>
-        <div class="offcanvas__logo">
-            <a href="./index.php"><img src="img/logo.png" alt=""></a>
-        </div>
-        <div id="mobile-menu-wrap"></div>
-        <div class="offcanvas__option">
-            <ul>
-                <li>USD <span class="arrow_carrot-down"></span>
-                    <ul>
-                        <li>USD</li>
-                        <li>USH</li>
-                    </ul>
-                </li>
-                <li>ENG <span class="arrow_carrot-down"></span>
-                    <ul>
-                        <li>Spanish</li>
-                        <li>ENG</li>
-                    </ul>
-                </li>
-                <li><a href="signup.php">Sign in</a> <span class="arrow_carrot-down"></span></li>
-            </ul>
-        </div>
-    </div>
+   
     <!-- Offcanvas Menu End -->
 
     <!-- Header Section Begin -->
@@ -97,21 +78,60 @@
                                             <li>ENG</li>
                                         </ul>
                                     </li>
-                                    <li><a href="signup.php">Sign in</a> <span class="arrow_carrot-down"></span></li>
+                                    <li>
+
+
+
+                                    <div class="content">
+  	<!-- notification message -->
+  	<?php if (isset($_SESSION['success'])) : ?>
+      <div class="error success" >
+      	<h3>
+          <?php 
+          	echo $_SESSION['success']; 
+          	unset($_SESSION['success']);
+          ?>
+          </h3>
+      </div>
+  	<?php endif ?>
+      <?php  if (isset($_SESSION['username'])) : ?>
+        
+    	<p>Welcome <strong><?php echo $_SESSION['username']; ?></strong></p>
+    	<p> <a href="logout.php" style="color: red;">logout</a> </p>
+    <?php endif ?>
+</div>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="header__logo">
-                                <a href="./index.php"><img src="img/logo.png" alt=""></a>
+                                <a href="index.php"><img src="img/logo.png" alt=""></a>
                             </div>
+
                             <div class="header__top__right">
                                 <div class="header__top__right__links">
-                                    <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-                                    <a href="#"><img src="img/icon/heart.png" alt=""></a>
+                                                
+                                                <?php
+                if(!empty($_SESSION["cart"])) {
+                $cart_count = count(array_keys($_SESSION["cart"]));
+                ?>
+                <div class="cart_div">
+                <a href="shopping.php"><img src="img/cartimg.jpg" width="50" height="50"><span>
+                <?php echo $cart_count; ?></span></a>
+                
+                </div>
+                <?php
+                }
+                ?>
+                                    
                                 </div>
+
+                                
                                 <div class="header__top__right__cart">
-                                    <a href="shopping.php"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
-                                    <div class="cart__price">Cart: <span>Ksh</span></div>
+
+               <!-- <a href="#"> <img src="img/canvas.png" alt="Trulli" width="30" height="20">
+                                    <i class="fas fa-sign-out-alt"></i>LOGOUT: <span></span></div>                        -->
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -124,10 +144,10 @@
                 <div class="col-lg-12">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li class="active"><a href="./index.php">Home</a></li>
-                            <li><a href="./about.php">About</a></li>
-                            <li><a href="./shop.php">Shop</a></li>
-                            <li><a href="./contact.php">Contact</a></li>
+                            <li class="active"><a href="index.php">Home</a></li>
+                            <li><a href="about.php">About</a></li>
+                            <li><a href="shop.php">Shop</a></li>
+                            <li><a href="contact.php">Contact</a></li>
 
 
                         </ul>
@@ -373,7 +393,7 @@
             </div>
         </div>
         <div class="map__iframe">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127641.40733721669!2d36.693539358203104!3d-1.298352599999993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1b8075c8f037%3A0x83709eadd9a31519!2sCBD!5e0!3m2!1sen!2ske!4v1632117216431!5m2!1sen!2ske" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d15955.288544012317!2d36.818117118887365!3d-1.280383185057925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x182f112abd69c555%3A0xad8be9298f80b5f5!2sKirinyaga%20Rd%2C%20Nairobi!3m2!1d-1.2803832!2d36.8268719!5e0!3m2!1sen!2ske!4v1637675804544!5m2!1sen!2ske" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </div>
     <!-- Map End -->

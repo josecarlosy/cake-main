@@ -52,21 +52,7 @@
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="offcanvas__option">
-            <ul>
-                <li>KSH <span class="arrow_carrot-down"></span>
-                    <ul>
-                        <li>KSH</li>
-                        <li>USH</li>
-                    </ul>
-                </li>
-                <li>ENG <span class="arrow_carrot-down"></span>
-                    <ul>
-                        <li>ENG</li>
-                        <li>ENG</li>
-                    </ul>
-                </li>
-                <li><a href="#">Sign in</a> <span class="arrow_carrot-down"></span></li>
-            </ul>
+          
         </div>
     </div>
     <!-- Offcanvas Menu End -->
@@ -91,8 +77,11 @@
                                             <li>ENG</li>
                                             <li>ENG</li>
                                         </ul>
+                                        <li>
+                                        <?php if($_SESSION['loggedin']!='!true') : ?>
+                                        <a href="register.php">Sign in </a> <span class="arrow_carrot-down"></span>
+                                        <?php endif; ?>
                                     </li>
-                                    <li><a href="#">Sign in</a> <span class="arrow_carrot-down"></span></li>
                                 </ul>
                             </div>
                             <div class="header__logo">
@@ -100,12 +89,25 @@
                             </div>
                             <div class="header__top__right">
                                 <div class="header__top__right__links">
-                                    <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-                                    <a href="#"><img src="img/icon/heart.png" alt=""></a>
+                                  
+                                <?php
+                if(!empty($_SESSION["cart"])) {
+                $cart_count = count(array_keys($_SESSION["cart"]));
+                ?>
+                <div class="cart_div">
+                <a href="shopping.php"><img src="img/cartimg.jpg" width="50" height="50"><span>
+                <?php echo $cart_count; ?></span></a>
+                </div>
+                </div>
+                <?php
+                }
+                ?>
+                                    
                                 </div>
+
+                                
                                 <div class="header__top__right__cart">
-                                    <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
-                                    <div class="cart__price">Cart: <span>Ksh0.00</span></div>
+                                <a href="register.php">LOGOUT </a> <span class="arrow_carrot-down"></span>
                                 </div>
                             </div>
                         </div>
@@ -119,12 +121,11 @@
                 <div class="col-lg-12">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li><a href="./index.php">Home</a></li>
-                            <li class="active"><a href="./about.php">About</a></li>
-                            <li><a href="./shop.php">Shop</a></li>
+                            <li><a href="index.php">Home</a></li>
+                            <li class="active"><a href="about.php">About</a></li>
+                            <li><a href="shop.php">Shop</a></li>
                         
-                            <li><a href="./contact.php">Contact</a></li>
-                            <li><a href="./help.php">Contact</a></li>
+                            <li><a href="contact.php">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -144,7 +145,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="breadcrumb__links">
-                        <a href="./index.html">Home</a>
+                        <a href="index.php">Home</a>
                         <span>About</span>
                     </div>
                 </div>

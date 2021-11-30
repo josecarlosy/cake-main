@@ -7,9 +7,9 @@ $enableSandbox = true;
 // Database settings. Change these for your database configuration.
 $dbConfig = [
 	'host' => 'localhost',
-	'username' => 'padminuser',
-	'password' => 'phpadminpass',
-	'name' => 'main-cake'
+	'username' => 'user',
+	'password' => 'secret',
+	'name' => 'example_database'
 ];
 
 // PayPal settings. Change these to your account details and the relevant URLs
@@ -24,9 +24,8 @@ $paypalConfig = [
 $paypalUrl = $enableSandbox ? 'https://www.sandbox.paypal.com/cgi-bin/webscr' : 'https://www.paypal.com/cgi-bin/webscr';
 
 // Product being purchased.
-$itemName = 'Test Item';
-// $itemAmount = 10;
-$itemAmount = $_POST["total_price"];
+$itemName = $_POST["txn_id"];
+$payment_amount = $_POST["payment_amount"];
 
 // Include Functions
 require 'functions.php';
@@ -52,9 +51,9 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])) {
 
 	// Set the details about the product being purchased, including the amount
 	// and currency so that these aren't overridden by the form data.
-	$data['txn_id'] = $txn_id;
-	$data['amount'] = $payment_amount;
-	$data['currency_code'] ='GBP';
+	$data['item_name'] = $itemName;
+	$data['payment_amount'] = $payment_amount;
+	$data['currency_code'] = 'GBP';
 
 	// Add any custom fields for the query string.
 	//$data['custom'] = USERID;
@@ -73,14 +72,15 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])) {
 	$db = new mysqli($dbConfig['host'], $dbConfig['username'], $dbConfig['password'], $dbConfig['name']);
 
 	// Assign posted variables to local data array.
-	$data = array(
+	$data = [
 		'username'=> $_POST['username'],
 		'createdtime' => $_POST['createdtime'],
 		'payment_status' => $_POST['payment_status'],
 		'payment_amount' => $_POST['payment_amount'],
 		'txn_id' => $_POST['txn_id'],
 		
-	);
+	];
+
 	// We need to verify the transaction comes from PayPal and check we've not
 	// already processed the transaction before adding the payment to our
 	// database.

@@ -18,21 +18,26 @@ $paypalConfig = [
 	'email' => '6karanjajoseph@gmail.com',
 	'return_url' => 'payment-successful.php',
 	'cancel_url' => 'payment-cancelled.php',
-	'notify_url' => 'payments.php'
+	'notify_url' => 'index2.php'
 ];
 
 $paypalUrl = $enableSandbox ? 'https://www.sandbox.paypal.com/cgi-bin/webscr' : 'https://www.paypal.com/cgi-bin/webscr';
 
 // Product being purchased.
 
-$itemName = 'Test Item';
+
+
+
+$username =$_POST["username"];
 // $itemAmount = 10;
-$itemAmount = $_POST["total_price"];
+$itemAmount = $_POST["payment_amount"];
 // Include Functions
 require 'functions.php';
 
 // Check if paypal request or response
-if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])) {
+if (!isset($_POST["txn_id"]) && !isset($_POST["email"])) {
+
+	$txn_id = uniqid();
 
 	// Grab the post data so that we can set up the query string for PayPal.
 	// Ideally we'd use a whitelist here to check nothing is being injected into
@@ -52,9 +57,9 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])) {
 
 	// Set the details about the product being purchased, including the amount
 	// and currency so that these aren't overridden by the form data.
-	$data['txn_id'] = $txn_id;
-	$data['amount'] = $payment_amount;
-	$data['currency_code'] ='GBP';
+	$data['username'] = $username;
+	$data['amount'] = $itemAmount;
+	$data['currency_code'] = 'USD';
 
 	// Add any custom fields for the query string.
 	//$data['custom'] = USERID;
@@ -64,38 +69,61 @@ if (!isset($_POST["txn_id"]) && !isset($_POST["txn_type"])) {
 
 	// Redirect to paypal IPN
 	header('location:' . $paypalUrl . '?' . $queryString);
-	exit();
-
-} else {
-	// Handle the PayPal response.
-
-	// Create a connection to the database.
+	 
 	$db = new mysqli($dbConfig['host'], $dbConfig['username'], $dbConfig['password'], $dbConfig['name']);
+	 $stmt = "INSERT INTO payments (txnid,payment_amount, payment_status, createdtime, username) VALUES('$txn_id','$itemAmount','paid','2021-10-11 11:25:51','$username')";
+	 $db->query($stmt);
+
+	exit();
+} else {
+
+	
+// 	// Handle the PayPal response.
+// 	$mytestdata = $_POST['PNREF'];
+// 	$mytestUrl = "http://localhost:9090/index2.php";
+// 	header('location:' .$mytestUrl.$mytestdata);
+// 	exit();
+// 	// Create a connection to the database.
+// 	$db = new mysqli($dbConfig['host'], $dbConfig['username'], $dbConfig['password'], $dbConfig['name']);
 
 
-	// Assign posted variables to local data array.
-	$data = array(
-		'username'=> $_POST['username'],
-		'createdtime' => $_POST['createdtime'],
-		'payment_status' => $_POST['payment_status'],
-		'payment_amount' => $_POST['payment_amount'],
-		'txn_id' => $_POST['txn_id'],
+// 	// Assign posted variables to local data array.
+// 	$data = [
+// 		'username'=> $_POST['username'],
+// 		'createdtime' => $_POST['createdtime'],
+// 		'payment_status' => $_POST['RESULT'],
+// 		'payment_amount' => $_POST['payment_amount'],
+// 		'txn_id' => $_POST['PNREF'],
 		
-	);
+// 	];
 	
 
 	
-	// We need to verify the transaction comes from PayPal and check we've not
-	// already processed the transaction before adding the payment to our
-	// database.
-	 if (verifyTransaction($_POST) && checkTxnid($data['txn_id'])) {
-		 {
+// 	// We need to verify the transaction comes from PayPal and check we've not
+// 	// already processed the transaction before adding the payment to our
+// 	// database.
 
-		if (addPayment($data) !== false) {
 			
-			
-		}
-	}
+// 	$stmt->bind_param(
+// 		'sdsss',
+// 		 $data['txn_id'],
+// 		$data['payment_amount'],
+// 		$data['payment_status'],
+// 		$data['createdtime'],
+// 		$data['username'],
+// 	);
+// 	$db->query($stmt);
+
+// 	if (verifyTransaction($_POST) && checkTxnid($data['txn_id'])) {
+
+// 	//	write a insert sql script to a test database here
 	
+
+// 		if (addPayment($data) !== false) {
+// 			echo "Payment successfully added";
+// 	}
+	
+// }
+
 }
-}
+?>
